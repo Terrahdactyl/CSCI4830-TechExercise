@@ -1,0 +1,60 @@
+<html>
+<head>
+<style>
+header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;	 
+}
+nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px;	      
+}
+section {
+    width:350px;
+    float:left;
+    padding:10px;	 	 
+}
+footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+</style>
+</head>
+
+<body>
+<header>
+<h1> National Yakipoo League Registry</h1>
+</header>
+
+<nav>
+<a href="/webproject-TechExercise-Quinlan/SearchTeam.html">Search for a Team</a> <br>
+</nav>
+
+<section>
+	<h1>Team Input</h1>
+	
+	<form action="InsertTeam" method="POST">
+	
+		Team Name: <input type="text" name="name"> <br />
+		Team Owner: <input type="text" name="owner"> <br />
+		Team Wins: <input type="text" name="wins"> <br />
+		
+		<input type="submit" value="Submit" />
+	</form>
+
+</section>
+
+<footer>
+Copyright
+</footer>
+</body>
+</html>
