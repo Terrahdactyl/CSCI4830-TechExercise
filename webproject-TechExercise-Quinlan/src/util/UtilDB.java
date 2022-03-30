@@ -72,7 +72,8 @@ public class UtilDB {
          List<?> teams = session.createQuery("FROM Team").list();
          for (Iterator<?> iterator = teams.iterator(); iterator.hasNext();) {
             Team team = (Team) iterator.next();
-            if (team.getName().toLowerCase().startsWith(keyword.toLowerCase())) {
+            String searchWord = keyword.toLowerCase();
+            if (team.getName().toLowerCase().contains(searchWord)) {
                resultList.add(team);
             }
          }
