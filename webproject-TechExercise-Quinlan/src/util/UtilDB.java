@@ -4,6 +4,7 @@ package util;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.hibernate.SessionFactory;
@@ -23,84 +24,121 @@ import org.hibernate.Transaction;
  * @since JavaSE-1.8
  */
 public class UtilDB {
-   static SessionFactory sessionFactory = null;
+	static SessionFactory sessionFactory = null;
 
-   public static SessionFactory getSessionFactory() {
-      if (sessionFactory != null) {
-         return sessionFactory;
-      }
-      Configuration configuration = new Configuration().configure();
-      StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-      sessionFactory = configuration.buildSessionFactory(builder.build());
-      return sessionFactory;
-   }
+	public static SessionFactory getSessionFactory() {
+		if (sessionFactory != null) {
+			return sessionFactory;
+		}
+		Configuration configuration = new Configuration().configure();
+		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
+				.applySettings(configuration.getProperties());
+		sessionFactory = configuration.buildSessionFactory(builder.build());
+		return sessionFactory;
+	}
 
-   public static List<Team> listTeams() {
-      List<Team> resultList = new ArrayList<Team>();
+	public static List<Team> listTeams() {
+		List<Team> resultList = new ArrayList<Team>();
 
-      Session session = getSessionFactory().openSession();
-      Transaction tx = null;  // each process needs transaction and commit the changes in DB.
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null; // each process needs transaction and commit the changes in DB.
 
-      try {
-         tx = session.beginTransaction();
-         List<?> teams = session.createQuery("FROM Team").list();
-         for (Iterator<?> iterator = teams.iterator(); iterator.hasNext();) {
-            Team team = (Team) iterator.next();
-            resultList.add(team);
-         }
-         tx.commit();
-      } catch (HibernateException e) {
-         if (tx != null)
-            tx.rollback();
-         e.printStackTrace();
-      } finally {
-         session.close();
-      }
-      return resultList;
-   }
+		try {
+			tx = session.beginTransaction();
+			List<?> teams = session.createQuery("FROM Team").list();
+			for (Iterator<?> iterator = teams.iterator(); iterator.hasNext();) {
+				Team team = (Team) iterator.next();
+				resultList.add(team);
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return resultList;
+	}
 
-   public static List<Team> listTeams(String keyword) {
-      List<Team> resultList = new ArrayList<Team>();
+	public static List<Team> listTeams(String keyword) {
+		List<Team> resultList = new ArrayList<Team>();
 
-      Session session = getSessionFactory().openSession();
-      Transaction tx = null;
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
 
-      try {
-         tx = session.beginTransaction();
-         System.out.println((Team)session.get(Team.class, 1)); // use "get" to fetch data
-        // Query q = session.createQuery("FROM Team");
-         List<?> teams = session.createQuery("FROM Team").list();
-         for (Iterator<?> iterator = teams.iterator(); iterator.hasNext();) {
-            Team team = (Team) iterator.next();
-            String searchWord = keyword.toLowerCase();
-            if (team.getName().toLowerCase().contains(searchWord)) {
-               resultList.add(team);
-            }
-         }
-         tx.commit();
-      } catch (HibernateException e) {
-         if (tx != null)
-            tx.rollback();
-         e.printStackTrace();
-      } finally {
-         session.close();
-      }
-      return resultList;
-   }
+		try {
+			tx = session.beginTransaction();
+			System.out.println((Team) session.get(Team.class, 1)); // use "get" to fetch data
+			// Query q = session.createQuery("FROM Team");
+			List<?> teams = session.createQuery("FROM Team").list();
+			for (Iterator<?> iterator = teams.iterator(); iterator.hasNext();) {
+				Team team = (Team) iterator.next();
+				String searchWord = keyword.toLowerCase();
+				if (team.getName().toLowerCase().contains(searchWord)) {
+					resultList.add(team);
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return resultList;
+	}
 
-   public static void createTeams(String name, String owner, String wins) {
-      Session session = getSessionFactory().openSession();
-      Transaction tx = null;
-      try {
-         tx = session.beginTransaction();
-         session.save(new Team(name, owner, Integer.valueOf(wins)));
-         tx.commit();
-      } catch (HibernateException e) {
-         if (tx != null)
-            tx.rollback();
-         e.printStackTrace();
-      } finally {
-         session.close();
-      }
-   }
+	public static void createTeams(String name, String owner, String wins) {
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			session.save(new Team(name, owner, Integer.valueOf(wins)));
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+	public static ArrayList<Team> rankTeams() {
+
+		ArrayList<Team> resultList = new ArrayList<Team>();
+
+		Session session = getSessionFactory().openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			System.out.println((Team) session.get(Team.class, 1)); // use "get" to fetch data
+			// Query q = session.createQuery("FROM Team");
+			List<?> teams = session.createQuery("FROM Team").list();
+//			Collections.sort(teams, Collections.reverseOrder(teams.));
+			
+			
+			for (Iterator<?> iterator = teams.iterator(); iterator.hasNext();) {
+				Team team = (Team) iterator.next();
+//				String searchWord = keyword.toLowerCase();
+//				if (team.getName().toLowerCase().contains(searchWord)) {
+					resultList.add(team);
+					Collections.sort(resultList);
+//				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return resultList;
+
+	}
+
 }
