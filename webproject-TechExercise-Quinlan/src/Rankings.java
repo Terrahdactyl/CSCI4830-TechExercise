@@ -35,7 +35,7 @@ public class Rankings extends HttpServlet implements Info {
             "<head><title>" + title + "</title></head>\n" + //
             "<body bgcolor=\"#f0f0f0\">\n" + //
             "<h1 align=\"center\">" + title + "</h1>\n" + 
-      		"<h3 align=\"center\">" + lead + "</h3>\n");
+      		"<h3 align=\"center\">" + "Currently Leading: " + lead + "</h3>\n");
 
       display(listTeams, out);
 
