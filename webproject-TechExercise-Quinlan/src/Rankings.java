@@ -21,24 +21,24 @@ public class Rankings extends HttpServlet implements Info {
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//      String keyword = request.getParameter("keyword").trim();
 
+	  List<Team> listTeams = null;
+	  listTeams = UtilDB.rankTeams();
+	   
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
       String title = "National Yakipoo League Standings";
       String docType = "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n"; //
+      String lead = listTeams.get(0).getName();
       out.println(docType + //
             "<html>\n" + //
             "<head><title>" + title + "</title></head>\n" + //
             "<body bgcolor=\"#f0f0f0\">\n" + //
-            "<h1 align=\"center\">" + title + "</h1>\n");
-//      out.println("<ol>");
+            "<h1 align=\"center\">" + title + "</h1>\n" + 
+      		"<h3 align=\"center\">" + lead + "</h3>\n");
 
-      List<Team> listTeams = null;
-      listTeams = UtilDB.rankTeams();
-      
       display(listTeams, out);
-//      out.println("</ol>");
+
       out.println("<br> <a href=/" + projectName + "/" + searchWebName + ">Search Data</a> <br>");
       out.println("<br> <a href=/" + projectName + "/" + insertWebName + ">Insert New Team</a> <br>");
       out.println("</body></html>");
