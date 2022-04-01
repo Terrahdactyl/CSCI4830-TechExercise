@@ -40,7 +40,7 @@ public class Rankings extends HttpServlet implements Info {
       display(listTeams, out);
 //      out.println("</ol>");
       out.println("<br> <a href=/" + projectName + "/" + searchWebName + ">Search Data</a> <br>");
-      out.println("<a href=/" + projectName + "/" + insertWebName + ">Insert New Team</a> <br>");
+      out.println("<br> <a href=/" + projectName + "/" + insertWebName + ">Insert New Team</a> <br>");
       out.println("</body></html>");
    }
 

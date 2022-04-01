@@ -22,6 +22,7 @@ public class InsertTeam extends HttpServlet implements Info {
       String name = request.getParameter("name").trim();
       String owner = request.getParameter("owner").trim();
       String wins = request.getParameter("wins").trim();
+      
       UtilDB.createTeams(name, owner, wins);
 
       response.setContentType("text/html");
