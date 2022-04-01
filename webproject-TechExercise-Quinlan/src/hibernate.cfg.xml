@@ -7,7 +7,7 @@
 	    <!-- The dialect specifies the type of database used in hibernate so that hibernate generate appropriate type of SQL statements. -->
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://ec2-18-212-51-30.compute-1.amazonaws.com:3306/myDB?enabledTLSProtocols=TLSv1.2</property>
+		<property name="hibernate.connection.url">jdbc:mysql://ec2-18-212-51-30.compute-1.amazonaws.com:3306/MyDBTechProjectQuinlan?enabledTLSProtocols=TLSv1.2</property>
 		<property name="hibernate.connection.username">tquinlan_remote</property>
 		<property name="hibernate.connection.password">dbTHINGSand5tu44</property>
 		<!-- you can create and update the table if it is not in DB. If create, it create new table everytime-->
