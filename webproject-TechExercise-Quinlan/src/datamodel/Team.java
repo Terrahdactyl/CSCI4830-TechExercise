@@ -15,7 +15,7 @@ public class Team implements Comparable<Team> {
    @Column(name = "id") // specify the column name. Without it, it will use method name
    private Integer id;
 
-   @Column(name = "teamName")
+   @Column(name = "teamname")
    private String name;
 
    @Column(name = "owner")
