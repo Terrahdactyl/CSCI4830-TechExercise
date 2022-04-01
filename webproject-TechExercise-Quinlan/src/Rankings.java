@@ -56,7 +56,7 @@ public class Rankings extends HttpServlet implements Info {
              out.println(rank + ". "
                      + team.getName() + ", " //
                      + team.getOwner() + ", " //
-                     + checkWins);
+                     + checkWins + "<br>");
          }
          else {
         	 checkWins = team.getWins();
@@ -64,7 +64,7 @@ public class Rankings extends HttpServlet implements Info {
              out.println(rank + ". "
                      + team.getName() + ", " //
                      + team.getOwner() + ", " //
-                     + checkWins);
+                     + checkWins + "<br>");
          }
       }
    }
