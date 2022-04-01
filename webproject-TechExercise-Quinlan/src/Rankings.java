@@ -32,34 +32,40 @@ public class Rankings extends HttpServlet implements Info {
             "<head><title>" + title + "</title></head>\n" + //
             "<body bgcolor=\"#f0f0f0\">\n" + //
             "<h1 align=\"center\">" + title + "</h1>\n");
-      out.println("<ol>");
+//      out.println("<ol>");
 
       List<Team> listTeams = null;
       listTeams = UtilDB.rankTeams();
       
-      
-//      if (keyword != null && !keyword.isEmpty()) {
-//         listTeams = UtilDB.listTeams(keyword);
-//      } else {
-//         listTeams = UtilDB.listTeams();
-//      }
       display(listTeams, out);
-      out.println("</ol>");
+//      out.println("</ol>");
       out.println("<a href=/" + projectName + "/" + searchWebName + ">Search Data</a> <br>");
       out.println("</body></html>");
    }
 
    void display(List<Team> listTeams, PrintWriter out) {
+	  int checkWins = listTeams.get(0).getWins();
       for (Team team : listTeams) {
          System.out.println("[DBG] " + team.getId() + ", " //
                + team.getName() + ", " //
                + team.getOwner() + ", "
                + team.getWins());
-
-         out.println("<li>"
-               + team.getName() + ", " //
-               + team.getOwner() + ", " //
-               + team.getWins() + "</li>");
+         
+         int rank = 1;
+         if(team.getWins().equals(checkWins)) {
+             out.println(rank + ". "
+                     + team.getName() + ", " //
+                     + team.getOwner() + ", " //
+                     + checkWins);
+         }
+         else {
+        	 checkWins = team.getWins();
+        	 rank++;
+             out.println(rank + ". "
+                     + team.getName() + ", " //
+                     + team.getOwner() + ", " //
+                     + checkWins);
+         }
       }
    }
 
