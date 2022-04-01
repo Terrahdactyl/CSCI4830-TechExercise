@@ -6,14 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * @since J2SE-1.8
- CREATE TABLE employee (
-  id INT NOT NULL AUTO_INCREMENT,    
-  name VARCHAR(30) NOT NULL,   
-  age INT NOT NULL,    
-  PRIMARY KEY (id));
- */
 @Entity
 @Table(name = "teams")
 public class Team implements Comparable<Team> {
