@@ -26,7 +26,7 @@ public class InsertTeam extends HttpServlet implements Info {
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
-      String title = "Database Result";
+      String title = "Team registered successfully";
       String docType = "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n"; //
       out.println(docType + //
             "<html>\n" + //
@@ -39,6 +39,7 @@ public class InsertTeam extends HttpServlet implements Info {
       out.println("<li> Number of Wins: " + wins);
       out.println("</ul>");
       out.println("<a href=/" + projectName + "/" + searchWebName + ">Search Data</a> <br>");
+      out.println("<a href=/" + projectName + "/" + rankingsName + ">NYL Rankings</a> <br>");
       out.println("</body></html>");
    }
 
