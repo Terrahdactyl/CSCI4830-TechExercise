@@ -11,7 +11,7 @@
 		<property name="hibernate.connection.username">tquinlan_remote</property>
 		<property name="hibernate.connection.password">dbTHINGSand5tu44</property>
 		<!-- you can create and update the table if it is not in DB. If create, it create new table everytime-->
-		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
 		<!-- True you will see sql in console -->
 		<property name="show_sql">true</property>
 		<!-- Should the below line be commented out? -->
