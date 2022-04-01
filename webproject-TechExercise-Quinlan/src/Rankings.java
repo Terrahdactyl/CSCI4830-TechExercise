@@ -45,13 +45,13 @@ public class Rankings extends HttpServlet implements Info {
 
    void display(List<Team> listTeams, PrintWriter out) {
 	  int checkWins = listTeams.get(0).getWins();
+	  int rank = 1;
       for (Team team : listTeams) {
          System.out.println("[DBG] " + team.getId() + ", " //
                + team.getName() + ", " //
                + team.getOwner() + ", "
                + team.getWins());
          
-         int rank = 1;
          if(team.getWins().equals(checkWins)) {
              out.println(rank + ". "
                      + team.getName() + ", " //
