@@ -113,19 +113,13 @@ public class UtilDB {
 		try {
 			tx = session.beginTransaction();
 			System.out.println((Team) session.get(Team.class, 1)); // use "get" to fetch data
-			// Query q = session.createQuery("FROM Team");
-			List<?> teams = session.createQuery("FROM Team").list();
-//			Collections.sort(teams, Collections.reverseOrder(teams.));
-			
+			List<?> teams = session.createQuery("FROM Team").list();			
 			
 			for (Iterator<?> iterator = teams.iterator(); iterator.hasNext();) {
 				Team team = (Team) iterator.next();
-//				String searchWord = keyword.toLowerCase();
-//				if (team.getName().toLowerCase().contains(searchWord)) {
-					resultList.add(team);
-					Collections.sort(resultList);
-//				}
+				resultList.add(team);
 			}
+			Collections.sort(resultList);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
